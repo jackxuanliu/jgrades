@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:persistent="true">
+
+    <PreferenceCategory
+        android:persistent="true"
+        android:title="@string/prefCategory_notifications">
+
+        <CheckBoxPreference
+            android:id="@+id/pref_enableNotifications"
+            android:defaultValue="false"
+            android:key="pref_enableNotifications"
+            android:persistent="true"
+            android:summary="@string/prefSummary_enableNotifications"
+            android:title="@string/pref_enableNotifications"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            />
+        <ListPreference
+            android:defaultValue="15"
+            android:dependency="pref_enableNotifications"
+            android:key="pref_updateInterval"
+            android:entries="@array/prefKeys_classUpdateInterval"
+            android:entryValues="@array/prefValues_classUpdateInterval"
+            android:title="@string/pref_updateInterval" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefCategory_appearance">
+        <CheckBoxPreference
+            android:key="pref_showPrior"
+            android:summary="@string/prefSummary_showPrior"
+            android:title="@string/prefTitle_showPrior" />
+        <ListPreference
+            android:defaultValue="cyan"
+            android:entries="@array/prefKeys_theme"
+            android:entryValues="@array/prefValues_theme"
+            android:key="pref_theme"
+            android:title="@string/prefTitle_theme" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefCategory_premium">
+        <Preference
+            android:key="pref_purchasePremium"
+            android:summary="@string/prefSummary_purchasePremium"
+            android:title="@string/prefTitle_purchasePremium" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefCategory_feedback">
+        <Preference
+            android:key="pref_gpFeedback"
+            android:summary="@string/prefSummary_gpFeedback"
+            android:title="@string/prefTitle_gpFeedback" />
+
+    </PreferenceCategory>
+
+    <!--<PreferenceCategory android:title="@string/prefCategory_importExport">-->
+        <!--<Preference-->
+            <!--android:key="pref_exportGradebooks"-->
+            <!--android:summary="@string/prefSummary_exportGradebooks"-->
+            <!--android:title="@string/prefTitle_exportGradebooks" />-->
+
+    <!--</PreferenceCategory>-->
+
+
+</PreferenceScreen>

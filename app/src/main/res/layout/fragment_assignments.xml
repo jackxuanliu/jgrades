@@ -1,0 +1,24 @@
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <website.jackl.jgrades.view.MyList
+        android:id="@+id/assignments_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></website.jackl.jgrades.view.MyList>
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/assignments_add"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--android:tint="?attr/styleColorPrimaryDark"-->
+        <!--android:visibility="gone"-->
+        <!--app:srcCompat="@drawable/ic_add" />-->
+</FrameLayout>
+
+
