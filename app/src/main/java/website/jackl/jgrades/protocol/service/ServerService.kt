@@ -86,7 +86,7 @@ class ServerService : Service() {
         }
 
         fun unbindService() {
-            binder.cancelAll(uuid)
+            if (::binder.isInitialized) binder.cancelAll(uuid)
             context.unbindService(this)
             bound = false
         }
