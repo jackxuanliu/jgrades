@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.analytics.FirebaseAnalytics
 import website.jackl.jgrades.R
 import website.jackl.jgrades.Data.User
 import website.jackl.jgrades.protocol.ServerError
@@ -19,9 +20,13 @@ import website.jackl.jgrades.newStore
 
 class GreeterActivity : GradesActivity<ConstraintLayout>() {
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_greeter)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         coordinator = findViewById(R.id.coordinator)
         parent = findViewById(R.id.parent)

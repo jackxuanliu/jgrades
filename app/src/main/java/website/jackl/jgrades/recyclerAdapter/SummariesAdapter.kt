@@ -1,5 +1,6 @@
 package website.jackl.jgrades.recyclerAdapter
 
+import android.content.Context
 import android.graphics.Typeface
 import android.support.v4.graphics.TypefaceCompat
 import android.support.v4.graphics.TypefaceCompatUtil
@@ -13,8 +14,9 @@ import website.jackl.jgrades.Data.Gradebook
  * Created by jack on 1/28/18.
  */
 class SummariesAdapter : MyListAdapter<Gradebook> (){
-    override val itemLayoutId: Int = R.layout.listitem_summary
+    var boldUpdated = true
 
+    override val itemLayoutId: Int = R.layout.listitem_summary
     override val emptyTitleId: Int = R.string.emptyTitle_classes
 
     override fun constructViewHolder(view: View): ViewHolder {
@@ -32,7 +34,7 @@ class SummariesAdapter : MyListAdapter<Gradebook> (){
             holder.mark.text = item.summary.officialMark
             holder.term.text = item.summary.term
 
-            if (item.lastView != null && item.lastView < item.summary.lastUpdated) {
+            if (boldUpdated && item.lastView != null && item.lastView < item.summary.lastUpdated) {
                 holder.name.setTypeface(null, Typeface.BOLD)
                 holder.percent.setTypeface(null, Typeface.BOLD)
             } else {

@@ -23,3 +23,7 @@
 -keep class com.android.vending.billing.**
 -dontwarn javax.naming.**
 -dontwarn org.bouncycastle.**
+
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception

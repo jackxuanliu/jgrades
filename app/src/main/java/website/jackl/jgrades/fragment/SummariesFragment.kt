@@ -88,6 +88,9 @@ class SummariesFragment : Fragment() {
         val binder = binder
         val list = list!!
         val preferredStudent = preferredStudent
+
+        adapter.boldUpdated = binder.activity.defaultPrefs.getBoolean("pref_boldUpdated", true)
+
         if (preferredStudent != null) {
             adapter.items.clear()
             val summaries = binder.store.loadGradebookSummaries(preferredStudent)

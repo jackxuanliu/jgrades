@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "998209372548",
+    "firebase_url": "https://grades-60091.firebaseio.com",
+    "project_id": "grades-60091",
+    "storage_bucket": "grades-60091.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998209372548:android:cf6d10871581a37f",
+        "android_client_info": {
+          "package_name": "website.jackl.jgrades"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998209372548-rj9buu2b2p5dkav6qtcnl4ejcp9qnvgj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "website.jackl.jgrades",
+            "certificate_hash": "2758af5e8da965646def68c799e4ef0c863bdebe"
+          }
+        },
+        {
+          "client_id": "998209372548-9miv9uv2i7ucfo9178jn2pdi9q3vnsb8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE5GdqbZ8kxOm5wGkAc3I3C4_29-8xc0o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998209372548-9miv9uv2i7ucfo9178jn2pdi9q3vnsb8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

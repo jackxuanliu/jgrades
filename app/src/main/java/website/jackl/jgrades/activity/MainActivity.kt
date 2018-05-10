@@ -22,15 +22,23 @@ import website.jackl.jgrades.fragment.SummariesFragment
 import website.jackl.jgrades.fragment.defaultPrefs
 import website.jackl.jgrades.newStore
 import website.jackl.jgrades.protocol.BillingManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import java.util.*
 
-val VERSION = 10013
-val VERSION_DESC = "Hello, sorry for the long delay, but I have finally finished the theme changing feature. You may access it in the settings menu.\n\nPlease let me know what you think by leaving some feedback.\n\nThank you for your patience!"
+
+val VERSION = 10016
+val VERSION_DESC = "Hello, adding a marker for updated classes has been a much requested feature, so I have implemented it. This option can be disabled in settings menu if you wish.\n\nThank you for your patience!"
+
 
 class MainActivity : GradesActivity<ConstraintLayout>(), SummariesFragment.Binder, BillingManager.Binder{
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
 
         coordinator = findViewById(R.id.coordinator)
         parent = findViewById(R.id.parent)
@@ -52,6 +60,10 @@ class MainActivity : GradesActivity<ConstraintLayout>(), SummariesFragment.Binde
     override fun onStart() {
         super.onStart()
         showUpdateChanges()
+
+        if (defaultPrefs.getLong("reviewTimer", -1) == -1L) {
+            defaultPrefs.edit().putLong("reviewTimer", Date().time).commit()
+        }
     }
 
     override fun onStop() {

@@ -127,4 +127,7 @@
     </string-array>
     <string name="menu_change_student">Change student...</string>
     <string name="prefCategory_appearance">Appearance</string>
+    <string name="prefTitle_boldUpdated">Bold updated classes</string>
+    <string name="prefSummary_boldUpdated">Bolds the titles of classes with unseen changes</string>
+    <string name="menuItem_forceReload">Force reload...</string>
 </resources>

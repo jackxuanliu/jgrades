@@ -29,6 +29,12 @@
             android:key="pref_showPrior"
             android:summary="@string/prefSummary_showPrior"
             android:title="@string/prefTitle_showPrior" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_boldUpdated"
+            android:summary="@string/prefSummary_boldUpdated"
+            android:title="@string/prefTitle_boldUpdated" />
         <ListPreference
             android:defaultValue="cyan"
             android:entries="@array/prefKeys_theme"
