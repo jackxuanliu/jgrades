@@ -45,11 +45,25 @@ class AssignmentsFragment : Fragment() {
 
         fun onAssignmentClicked(assignment: Gradebook.Assignment)
 
-        fun onEnterEdit()
-        fun onExitEdit()
+        fun displayEditMenu()
+        fun displayViewMenu()
 
         fun showFab(animate: Boolean = true)
         fun hideFab(animate: Boolean = true)
+    }
+
+    fun forceUpdate() {
+        binder.service.removeDesire()
+        list.stopLoading()
+
+        binder.apply {
+            val gradebook = store.loadGradebook(currentStudent, currentNumberTerm)
+            if (gradebook != null) {
+                store.saveGradebook(currentStudent, gradebook.copy(lastDetailsCheck = 0L))
+            }
+        }
+
+        fetchGradebook()
     }
 
     fun onFabClick() {
@@ -229,7 +243,7 @@ class AssignmentsFragment : Fragment() {
             inEdit = true
             binder.service.removeDesire()
             list.stopLoading()
-            binder.onEnterEdit()
+            binder.displayEditMenu()
         }
     }
 
@@ -240,7 +254,7 @@ class AssignmentsFragment : Fragment() {
             }
             inEdit = false
 
-            binder.onExitEdit()
+            binder.displayViewMenu()
             binder.onEditScore(null)
 
             displaySavedGradebook()

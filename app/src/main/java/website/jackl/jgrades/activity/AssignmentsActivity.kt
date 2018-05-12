@@ -2,15 +2,18 @@ package website.jackl.jgrades.activity
 
 import android.app.Fragment
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.FloatingActionButton
+import android.support.v7.app.AlertDialog
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.widget.*
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -38,7 +41,8 @@ class AssignmentsActivity : GradesActivity<ConstraintLayout>(), AssignmentsFragm
         parent = findViewById(R.id.parent)
 
         toolbar = findViewById(R.id.toolbar)
-        toolbar.setOnMenuItemClickListener { fragment.exitEdit(); true }
+        toolbar.setOnMenuItemClickListener(this::onMenuItemClick)
+        displayViewMenu()
 
         fragment = supportFragmentManager.findFragmentById(R.id.assignments_list) as AssignmentsFragment
 
@@ -74,6 +78,29 @@ class AssignmentsActivity : GradesActivity<ConstraintLayout>(), AssignmentsFragm
         billingManager.onStart()
 
         checkPurchases()
+    }
+
+    private fun onMenuItemClick(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.menuItem_forceUpdate -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setPositiveButton(android.R.string.ok, fun (dialog: DialogInterface, which: Int) {
+                    fragment.forceUpdate()
+                })
+
+                builder.setNegativeButton(android.R.string.cancel, fun (dialog: DialogInterface, which: Int) {
+
+                })
+                builder.setTitle(R.string.dialogTitle_forceUpdate)
+                builder.setMessage(R.string.dialogMsg_forceUpdate)
+
+                builder.create().show()
+            }
+            R.id.editMode_revert -> {
+                fragment.exitEdit()
+            }
+        }
+        return true
     }
 
     override val activity: GradesActivity<*>
@@ -164,12 +191,14 @@ class AssignmentsActivity : GradesActivity<ConstraintLayout>(), AssignmentsFragm
     }
 
 
-    override fun onEnterEdit() {
+    override fun displayEditMenu() {
+        toolbar.menu.clear()
         toolbar.inflateMenu(R.menu.edit_mode)
     }
 
-    override fun onExitEdit() {
+    override fun displayViewMenu() {
         toolbar.menu.clear()
+        toolbar.inflateMenu(R.menu.view_assignment)
     }
 
     override val context: Context

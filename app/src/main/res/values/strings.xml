@@ -43,6 +43,9 @@
     <string name="dialogTitle_logout">Confirm Logout</string>
     <string name="dialogMsg_logout">Are you sure you want to log out?</string>
 
+    <string name="dialogTitle_forceUpdate">Force Update</string>
+    <string name="dialogMsg_forceUpdate">This will try to download the latest data for the gradebook even if no updates were detected.\n\nIf there are any errors in the displayed gradebook, this should fix the issue.</string>
+
     <string name="snackbar_updateForNotifications">Android version is unsupported. Notifications require Android 5.0</string>
     <string name="settings_title">Settings</string>
     <string name="prefCategory_premium">Premium</string>
@@ -125,9 +128,9 @@
         <item>dark</item>
         <item>black</item>
     </string-array>
-    <string name="menu_change_student">Change student...</string>
+    <string name="menu_change_student">Change student…</string>
     <string name="prefCategory_appearance">Appearance</string>
     <string name="prefTitle_boldUpdated">Bold updated classes</string>
     <string name="prefSummary_boldUpdated">Bolds the titles of classes with unseen changes</string>
-    <string name="menuItem_forceReload">Force reload...</string>
+    <string name="menuItem_forceUpdate">Force update…</string>
 </resources>

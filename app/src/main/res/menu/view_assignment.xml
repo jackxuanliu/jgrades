@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuItem_forceReload"
-        android:title="@string/menuItem_forceReload"
+        android:id="@+id/menuItem_forceUpdate"
+        android:title="@string/menuItem_forceUpdate"
         app:showAsAction="never" />
 </menu>
