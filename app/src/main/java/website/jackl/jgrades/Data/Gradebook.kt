@@ -1,6 +1,5 @@
 package website.jackl.jgrades.Data
 
-import android.util.Log
 import website.jackl.data_processor.Data
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -8,7 +7,8 @@ import java.text.DecimalFormat
 /**
  * Created by jack on 1/22/18.
  */
-@Data data class Gradebook(val summary: Summary, val details: Details? = null, val lastDetailsCheck: Long = 0 /* milliseconds */, val lastView: Long?) {
+@Data
+data class Gradebook(val summary: Summary, val details: Details? = null, val lastDetailsCheck: Long = 0 /* milliseconds */, val lastView: Long?) {
     companion object {
         fun simplifyName(name: String): String {
             val parts = name.split("-")
@@ -42,11 +42,11 @@ import java.text.DecimalFormat
         }
 
         val decimalFormat: DecimalFormat
-        get() {
-            val format = DecimalFormat("###,###.##")
-            format.roundingMode = RoundingMode.FLOOR
-            return format
-        }
+            get() {
+                val format = DecimalFormat("###,###.##")
+                format.roundingMode = RoundingMode.FLOOR
+                return format
+            }
         val percentFormat: DecimalFormat
             get() {
                 val format = DecimalFormat("###,###.##%")
@@ -61,9 +61,11 @@ import java.text.DecimalFormat
             }
     }
 
-    @Data data class Summary(val numberTerm: String, val name: String, val term: String, val officialPercent: Int, val officialMark: String, val code: String?, val lastUpdated: Long /* milliseconds */)
+    @Data
+    data class Summary(val numberTerm: String, val name: String, val term: String, val officialPercent: Int, val officialMark: String, val code: String?, val lastUpdated: Long /* milliseconds */)
 
-    @Data data class Details(val detailedSummaryData: DetailedSummaryData, val assignments: List<Assignment>) {
+    @Data
+    data class Details(val detailedSummaryData: DetailedSummaryData, val assignments: List<Assignment>) {
         fun calculateGrade(): Double {
             if (detailedSummaryData.maxPoints == 0.00) {
                 var totalScore = 0.00
@@ -106,11 +108,11 @@ import java.text.DecimalFormat
 
                 newCategories.put(name,
                         originalCategory.copy(
-                                points =    originalCategory.points + (newTotals.first - originalTotals.first),
+                                points = originalCategory.points + (newTotals.first - originalTotals.first),
                                 maxPoints = originalCategory.maxPoints + (newTotals.second - originalTotals.second)
                         )
                 )
-                if ( detailedSummaryData.categories.get(name)!!.weight != 0.00) isPointBased = false
+                if (detailedSummaryData.categories.get(name)!!.weight != 0.00) isPointBased = false
 
 
             }
@@ -151,10 +153,13 @@ import java.text.DecimalFormat
 
     }
 
-    @Data data class DetailedSummaryData(val points: Double, val maxPoints: Double, val categories: Map<String, Category>)
+    @Data
+    data class DetailedSummaryData(val points: Double, val maxPoints: Double, val categories: Map<String, Category>)
 
-    @Data data class Assignment(val name: String, val category: String, val points: Double, val maxPoints: Double, val isGraded: Boolean)
+    @Data
+    data class Assignment(val name: String, val category: String, val points: Double, val maxPoints: Double, val isGraded: Boolean)
 
-    @Data data class Category(val name: String, val points: Double, val maxPoints: Double, val weight: Double)
+    @Data
+    data class Category(val name: String, val points: Double, val maxPoints: Double, val weight: Double)
 }
 

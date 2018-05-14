@@ -6,23 +6,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AlertDialog
-import android.util.Log
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import android.support.v7.widget.Toolbar
-import android.widget.FrameLayout
 import android.widget.RelativeLayout
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
+import android.widget.TextView
 import website.jackl.generated.data.write
 import website.jackl.jgrades.R
-import website.jackl.jgrades.Data.SettingsManager
 import website.jackl.jgrades.fragment.SummariesFragment
 import website.jackl.jgrades.fragment.defaultPrefs
-import website.jackl.jgrades.newStore
 import website.jackl.jgrades.protocol.BillingManager
-import com.google.firebase.analytics.FirebaseAnalytics
 import java.util.*
 
 
@@ -30,7 +23,7 @@ val VERSION = 10016
 val VERSION_DESC = "Hello, adding a marker for updated classes has been a much requested feature, so I have implemented it. This option can be disabled in settings menu if you wish.\n\nThank you for your patience!"
 
 
-class MainActivity : GradesActivity<ConstraintLayout>(), SummariesFragment.Binder, BillingManager.Binder{
+class MainActivity : GradesActivity<ConstraintLayout>(), SummariesFragment.Binder, BillingManager.Binder {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,11 +95,11 @@ class MainActivity : GradesActivity<ConstraintLayout>(), SummariesFragment.Binde
         when (menuItem.itemId) {
             R.id.main_logout -> {
                 val builder = AlertDialog.Builder(this)
-                builder.setPositiveButton(android.R.string.yes, fun (dialog: DialogInterface, which: Int) {
+                builder.setPositiveButton(android.R.string.yes, fun(dialog: DialogInterface, which: Int) {
                     logout()
                 })
 
-                builder.setNegativeButton(android.R.string.cancel, fun (dialog: DialogInterface, which: Int) {
+                builder.setNegativeButton(android.R.string.cancel, fun(dialog: DialogInterface, which: Int) {
 
                 })
                 builder.setTitle(R.string.dialogTitle_logout)
@@ -139,7 +132,7 @@ class MainActivity : GradesActivity<ConstraintLayout>(), SummariesFragment.Binde
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Update notes")
             builder.setMessage(VERSION_DESC)
-            builder.setPositiveButton(android.R.string.ok, fun (dialog: DialogInterface, which: Int) {})
+            builder.setPositiveButton(android.R.string.ok, fun(dialog: DialogInterface, which: Int) {})
             builder.create().show()
             defaultPrefs.edit().putInt("savedVersion", VERSION).commit()
         }

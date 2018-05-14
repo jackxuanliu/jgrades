@@ -1,20 +1,18 @@
 package website.jackl.jgrades.fragment
 
-import android.support.v4.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import website.jackl.jgrades.R
-import website.jackl.jgrades.activity.GradesActivity
 import website.jackl.jgrades.Data.Gradebook
 import website.jackl.jgrades.Data.SettingsManager
 import website.jackl.jgrades.Data.Student
 import website.jackl.jgrades.Data.User
-import website.jackl.jgrades.protocol.request.aeries.GradebookSummariesRequest
+import website.jackl.jgrades.R
+import website.jackl.jgrades.activity.GradesActivity
 import website.jackl.jgrades.protocol.service.ServerService
-import website.jackl.jgrades.recyclerAdapter.MyListAdapter
 import website.jackl.jgrades.recyclerAdapter.SummariesAdapter
 import website.jackl.jgrades.view.MyList
 
@@ -23,7 +21,7 @@ import website.jackl.jgrades.view.MyList
  */
 class SummariesFragment : Fragment() {
 
-    interface Binder{
+    interface Binder {
         fun onStudentName(name: String?)
 
         val activity: GradesActivity<*>
@@ -42,7 +40,7 @@ class SummariesFragment : Fragment() {
         val adapter = SummariesAdapter()
         this.adapter = adapter
 
-        adapter.onItemClick = fun(position: Int, gradebook: Gradebook) { binder.onSummaryClicked(Binder.OnSummaryClickedResult(gradebook.summary, savedStudent !!)) }
+        adapter.onItemClick = fun(position: Int, gradebook: Gradebook) { binder.onSummaryClicked(Binder.OnSummaryClickedResult(gradebook.summary, savedStudent!!)) }
         list.setAdapter(adapter)
         list.onSrlPull = this::fetchSummaries
 
@@ -133,7 +131,7 @@ class SummariesFragment : Fragment() {
     private fun fetchSummaries() {
         val desire = ServerService.Desire.Summary({
             displaySavedSummaries()
-        }, {binder.activity.onErrorSnackbar(it); list!!.stopLoading()})
+        }, { binder.activity.onErrorSnackbar(it); list!!.stopLoading() })
         binder.service.addDesire(desire)
     }
 

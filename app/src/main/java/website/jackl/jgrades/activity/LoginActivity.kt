@@ -11,8 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import website.jackl.jgrades.R
-import website.jackl.jgrades.protocol.request.aeries.LoginRequest
 import website.jackl.jgrades.newStore
+import website.jackl.jgrades.protocol.request.aeries.LoginRequest
 
 class LoginActivity : GradesActivity<ConstraintLayout>() {
 
@@ -93,7 +93,7 @@ class LoginActivity : GradesActivity<ConstraintLayout>() {
         val email = emailField!!.text?.trim()
         val password = passwordField!!.text
 
-        if (email.isNullOrEmpty()|| password.isNullOrEmpty()) {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
             showSnackbar(R.string.login_blankEmailOrPassword, Snackbar.LENGTH_SHORT)
         } else {
             val email = email.toString()

@@ -1,31 +1,27 @@
 package website.jackl.jgrades.activity
 
-import android.app.Fragment
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.Toolbar
 import android.transition.TransitionManager
 import android.util.Log
-import android.view.View
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.widget.*
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import org.json.JSONObject
 import website.jackl.generated.data.constructStudentInfo
-import website.jackl.jgrades.R
 import website.jackl.jgrades.Data.Gradebook
-import website.jackl.jgrades.Data.SettingsManager
 import website.jackl.jgrades.Data.Student
+import website.jackl.jgrades.R
 import website.jackl.jgrades.fragment.AssignmentsFragment
 import website.jackl.jgrades.fragment.defaultPrefs
-import website.jackl.jgrades.newStore
 import website.jackl.jgrades.protocol.BillingManager
 
 /**
@@ -84,11 +80,11 @@ class AssignmentsActivity : GradesActivity<ConstraintLayout>(), AssignmentsFragm
         when (menuItem.itemId) {
             R.id.menuItem_forceUpdate -> {
                 val builder = AlertDialog.Builder(this)
-                builder.setPositiveButton(android.R.string.ok, fun (dialog: DialogInterface, which: Int) {
+                builder.setPositiveButton(android.R.string.ok, fun(dialog: DialogInterface, which: Int) {
                     fragment.forceUpdate()
                 })
 
-                builder.setNegativeButton(android.R.string.cancel, fun (dialog: DialogInterface, which: Int) {
+                builder.setNegativeButton(android.R.string.cancel, fun(dialog: DialogInterface, which: Int) {
 
                 })
                 builder.setTitle(R.string.dialogTitle_forceUpdate)
@@ -123,12 +119,12 @@ class AssignmentsActivity : GradesActivity<ConstraintLayout>(), AssignmentsFragm
     }
 
     override fun onRealScore(percent: Double?) {
-            if (percent != null) {
-                percents.visibility = View.VISIBLE
-                officialPercent.text = Gradebook.classPercentFormat.format(percent)
-            } else {
-                percents.visibility = View.GONE
-            }
+        if (percent != null) {
+            percents.visibility = View.VISIBLE
+            officialPercent.text = Gradebook.classPercentFormat.format(percent)
+        } else {
+            percents.visibility = View.GONE
+        }
 
     }
 

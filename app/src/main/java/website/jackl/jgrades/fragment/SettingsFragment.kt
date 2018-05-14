@@ -1,29 +1,22 @@
 package website.jackl.jgrades.fragment
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.TaskStackBuilder
 import android.support.v7.preference.CheckBoxPreference
 import android.support.v7.preference.ListPreference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceManager
-
 import website.jackl.jgrades.R
 import website.jackl.jgrades.activity.DEFAULT_CLASS_UPDATES_INTERVAL_MINUTES
 import website.jackl.jgrades.activity.GradesActivity
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Environment
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.TaskStackBuilder
-import android.support.v4.content.ContextCompat
 import website.jackl.jgrades.activity.SettingsActivity
-import java.io.File
-import java.util.jar.Manifest
 
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -49,7 +42,12 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         findPreference("pref_purchasePremium").setOnPreferenceClickListener {
             binder.onPurchaseClick()
 
-             false
+            false
+        }
+
+        findPreference("pref_deleteLocalCachedData").setOnPreferenceClickListener {
+            binder.activity.store.deleteGradebookData()
+            false
         }
 
         findPreference("pref_gpFeedback").setOnPreferenceClickListener { launchMarket(); false }
@@ -83,7 +81,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             when (key) {
                 "pref_enableNotifications" -> {
                     if (Build.VERSION.SDK_INT < 21) {
-                         binder.activity.showSnackbar(R.string.snackbar_updateForNotifications, Snackbar.LENGTH_LONG)
+                        binder.activity.showSnackbar(R.string.snackbar_updateForNotifications, Snackbar.LENGTH_LONG)
                         (findPreference(key) as CheckBoxPreference).isChecked = false
                         return
                     }
@@ -122,7 +120,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         try {
             startActivity(myAppLinkToMarket)
         } catch (e: ActivityNotFoundException) {
-            binder.activity.showSnackbar( R.string.error_googlePlay, Snackbar.LENGTH_SHORT)
+            binder.activity.showSnackbar(R.string.error_googlePlay, Snackbar.LENGTH_SHORT)
         }
 
     }
@@ -142,12 +140,14 @@ fun SharedPreferences.getLongFromString(key: String, default: Long): Long {
     return value
 }
 
-val SharedPreferences.classUpdateInterval: Long get() {
-    return getLongFromString("pref_updateInterval", DEFAULT_CLASS_UPDATES_INTERVAL_MINUTES)
-}
+val SharedPreferences.classUpdateInterval: Long
+    get() {
+        return getLongFromString("pref_updateInterval", DEFAULT_CLASS_UPDATES_INTERVAL_MINUTES)
+    }
 
-val SharedPreferences.classUpdateStatus: Boolean get() {
-    return getBoolean("pref_enableNotifications", false)
-}
+val SharedPreferences.classUpdateStatus: Boolean
+    get() {
+        return getBoolean("pref_enableNotifications", false)
+    }
 
 val Context.defaultPrefs get() = PreferenceManager.getDefaultSharedPreferences(this)

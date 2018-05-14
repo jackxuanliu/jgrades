@@ -1,19 +1,15 @@
 package website.jackl.jgrades.recyclerAdapter
 
-import android.content.Context
 import android.graphics.Typeface
-import android.support.v4.graphics.TypefaceCompat
-import android.support.v4.graphics.TypefaceCompatUtil
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.TextView
-import website.jackl.jgrades.R
 import website.jackl.jgrades.Data.Gradebook
+import website.jackl.jgrades.R
 
 /**
  * Created by jack on 1/28/18.
  */
-class SummariesAdapter : MyListAdapter<Gradebook> (){
+class SummariesAdapter : MyListAdapter<Gradebook>() {
     var boldUpdated = true
 
     override val itemLayoutId: Int = R.layout.listitem_summary

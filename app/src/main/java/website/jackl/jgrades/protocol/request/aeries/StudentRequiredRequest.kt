@@ -24,7 +24,7 @@ abstract class StudentRequiredRequest(onError: (ServerError) -> Unit) : LoginReq
         } else {
             this.service = service
 
-            val getStudents = GetStudentsRequest( this::onGetStudentsResult, onError)
+            val getStudents = GetStudentsRequest(this::onGetStudentsResult, onError)
             getStudents.perform(service)
         }
     }
@@ -51,7 +51,6 @@ abstract class StudentRequiredRequest(onError: (ServerError) -> Unit) : LoginReq
                 student = preferredStudent
             }
         }
-
 
 
     }

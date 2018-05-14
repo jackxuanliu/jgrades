@@ -1,9 +1,7 @@
 package website.jackl.jgrades.recyclerAdapter
 
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.TextView
-import website.jackl.jgrades.Data.District
 import website.jackl.jgrades.Data.Student
 import website.jackl.jgrades.R
 
@@ -29,10 +27,11 @@ class StudentsAdapter : MyListAdapter<Student.Info>() {
         }
     }
 
-    class ViewHolder(itemView: View) : MyListAdapter.ViewHolder<Student.Info>(itemView){
+    class ViewHolder(itemView: View) : MyListAdapter.ViewHolder<Student.Info>(itemView) {
         val name: TextView
         val school: TextView
         val parent: View
+
         init {
             parent = itemView
             school = itemView.findViewById(R.id.student_school)

@@ -18,14 +18,14 @@ import website.jackl.jgrades.recyclerAdapter.MyListAdapter
 /**
  * Created by jack on 2/2/18.
  */
-class MyList(context: Context, attributeSet: AttributeSet) : FrameLayout(context, attributeSet){
+class MyList(context: Context, attributeSet: AttributeSet) : FrameLayout(context, attributeSet) {
 
 
-    fun <T>getAdapter(): MyListAdapter<T> {
+    fun <T> getAdapter(): MyListAdapter<T> {
         return backingList.adapter as MyListAdapter<T>
     }
 
-    fun <T>setAdapter(adapter: MyListAdapter<T>) {
+    fun <T> setAdapter(adapter: MyListAdapter<T>) {
         backingList.adapter = adapter
     }
 

@@ -8,5 +8,5 @@ import website.jackl.jgrades.R
  */
 
 
-
-@Data data class Global (val theme: Int = R.style.AppTheme_Base, val district: District? = null, val activeEmail: String? = null)
+@Data
+data class Global(val theme: Int = R.style.AppTheme_Base, val district: District? = null, val activeEmail: String? = null)

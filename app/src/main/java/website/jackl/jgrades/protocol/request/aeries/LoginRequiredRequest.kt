@@ -39,8 +39,7 @@ abstract class LoginRequiredRequest(onError: (ServerError) -> Unit) : AeriesRequ
         val password = user?.password
         if (email == null || password == null) {
             onError(ServerError.AUTHENTICATION)
-        }
-        else {
+        } else {
             val loginRequest = LoginRequest(
                     onResult = {
                         if (it) { // if login successful

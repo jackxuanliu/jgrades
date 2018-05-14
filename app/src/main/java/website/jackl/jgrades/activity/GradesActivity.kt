@@ -1,6 +1,5 @@
 package website.jackl.jgrades.activity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,9 +16,9 @@ import website.jackl.jgrades.Data.SettingsManager
 import website.jackl.jgrades.GradesApplication
 import website.jackl.jgrades.R
 import website.jackl.jgrades.fragment.defaultPrefs
+import website.jackl.jgrades.newStore
 import website.jackl.jgrades.protocol.ServerError
 import website.jackl.jgrades.protocol.service.ServerService
-import website.jackl.jgrades.newStore
 
 /**
  * Created by jack on 12/29/17.
@@ -31,7 +30,7 @@ abstract class GradesActivity<ParentLayout : ViewGroup> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         gradesApp = application as GradesApplication
-        connection =  ServerService.Connection(this)
+        connection = ServerService.Connection(this)
 
         store = newStore
 
@@ -76,10 +75,10 @@ abstract class GradesActivity<ParentLayout : ViewGroup> : AppCompatActivity() {
         val message: Int = when (error) {
 
             ServerError.CONNECTION -> {
-                 R.string.error_connection
+                R.string.error_connection
             }
             ServerError.AUTHENTICATION -> {
-                 R.string.error_authentication
+                R.string.error_authentication
             }
             ServerError.UNKNOWN -> {
                 R.string.error_unknown
@@ -92,7 +91,7 @@ abstract class GradesActivity<ParentLayout : ViewGroup> : AppCompatActivity() {
         showSnackbar(message, Snackbar.LENGTH_SHORT)
     }
 
-    fun showSnackbar(message: Int, duration:Int) {
+    fun showSnackbar(message: Int, duration: Int) {
         val snackbarView = coordinator ?: parent
         Snackbar.make(snackbarView, message, duration).apply {
             try {
@@ -115,13 +114,13 @@ abstract class GradesActivity<ParentLayout : ViewGroup> : AppCompatActivity() {
         inputManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-     fun launchDistrictSelection() {
+    fun launchDistrictSelection() {
         val intent = Intent(this, DistrictSelectionActivity::class.java)
         startActivity(intent)
     }
 
-     fun launchLogin() {
-         val intent = Intent(this, LoginActivity::class.java)
+    fun launchLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 
@@ -145,10 +144,10 @@ abstract class GradesActivity<ParentLayout : ViewGroup> : AppCompatActivity() {
     lateinit var store: SettingsManager
 
     var gradesApp: GradesApplication
-    get() = gradesAppField!!
-    set(value) {
-        gradesAppField = value
-    }
+        get() = gradesAppField!!
+        set(value) {
+            gradesAppField = value
+        }
 
     private var gradesAppField: GradesApplication? = null
 

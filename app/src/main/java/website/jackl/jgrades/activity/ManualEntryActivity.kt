@@ -1,8 +1,6 @@
 package website.jackl.jgrades.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.view.KeyEvent
@@ -47,14 +45,14 @@ class ManualEntryActivity : GradesActivity<ConstraintLayout>() {
         connection.bindService(connection.sessionData.copy(aeriesUrl = manualDistrict.url),
                 {
                     this.service = it
-                        val testRequest = IsUserLoggedInRequest({
-                            progress.visibility = View.GONE
-                            launchLogin()
-                        }, {
-                            progress.visibility = View.GONE
-                            showSnackbar(R.string.manualEntry_error, Snackbar.LENGTH_LONG)
-                        })
-                        service.request(testRequest)
+                    val testRequest = IsUserLoggedInRequest({
+                        progress.visibility = View.GONE
+                        launchLogin()
+                    }, {
+                        progress.visibility = View.GONE
+                        showSnackbar(R.string.manualEntry_error, Snackbar.LENGTH_LONG)
+                    })
+                    service.request(testRequest)
 
                 })
 
@@ -67,7 +65,6 @@ class ManualEntryActivity : GradesActivity<ConstraintLayout>() {
         val u1 = url.trim()
                 .replace("LoginParent.aspx?page=default.aspx", "", true)
                 .replace("http://", "", true)
-
 
 
         val u2 = if (u1.endsWith("/")) u1 else u1 + "/"

@@ -2,7 +2,6 @@ package website.jackl.jgrades.Data
 
 import org.json.JSONArray
 import org.json.JSONObject
-import website.jackl.data_processor.Data
 
 /**
  * Created by jack on 2/23/18.

@@ -2,8 +2,8 @@ package website.jackl.jgrades.protocol.request.aeries
 
 import android.util.Log
 import com.android.volley.VolleyError
-import website.jackl.jgrades.protocol.addUrlPath
 import website.jackl.jgrades.protocol.ServerError
+import website.jackl.jgrades.protocol.addUrlPath
 import website.jackl.jgrades.protocol.request.ServerRequest
 
 /**
@@ -14,7 +14,7 @@ abstract class AeriesRequest(val onError: (ServerError) -> Unit) : ServerRequest
         return sessionData.aeriesUrl!!.addUrlPath(mobileApiPath).addUrlPath(requestPath)
     }
 
-    fun getRequestUrl(url: String): String{
+    fun getRequestUrl(url: String): String {
         return url.addUrlPath(mobileApiPath).addUrlPath(requestPath)
     }
 

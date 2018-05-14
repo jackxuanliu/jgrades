@@ -1,5 +1,6 @@
 package website.jackl.jgrades.protocol.service
 
+import android.app.PendingIntent
 import android.app.Service
 import android.content.ComponentName
 import android.content.Context
@@ -8,12 +9,18 @@ import android.content.ServiceConnection
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import android.support.v4.app.TaskStackBuilder
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.BasicNetwork
 import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import org.bouncycastle.openssl.PEMReader
 import website.jackl.generated.data.write
 import website.jackl.jgrades.Data.Gradebook
 import website.jackl.jgrades.Data.SessionData
@@ -26,51 +33,38 @@ import website.jackl.jgrades.fragment.classUpdateInterval
 import website.jackl.jgrades.fragment.classUpdateStatus
 import website.jackl.jgrades.fragment.defaultPrefs
 import website.jackl.jgrades.newStore
+import website.jackl.jgrades.protocol.ExceptionTrustManager
 import website.jackl.jgrades.protocol.ServerError
 import website.jackl.jgrades.protocol.request.ServerRequest
 import website.jackl.jgrades.protocol.request.aeries.GradebookDetailsRequest
 import website.jackl.jgrades.protocol.request.aeries.GradebookSummariesRequest
 import website.jackl.jgrades.protocol.request.aeries.StudentRequiredRequest
+import java.io.InputStreamReader
 import java.net.CookieHandler
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.net.CookieStore
-import java.util.*
-import android.app.PendingIntent
-import android.content.res.AssetManager
-import android.support.v4.app.TaskStackBuilder
-import android.support.v4.view.LayoutInflaterCompat
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.ViewParent
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import org.apache.commons.io.IOUtils
-import org.bouncycastle.openssl.PEMReader
-import website.jackl.jgrades.activity.MainActivity
-import website.jackl.jgrades.protocol.ExceptionTrustManager
-import java.io.InputStreamReader
-import java.security.KeyFactory
-import java.security.PublicKey
 import java.security.cert.Certificate
-import java.security.spec.X509EncodedKeySpec
+import java.util.*
 import javax.net.ssl.SSLContext
 
 
 class ServerService : Service() {
     sealed class Desire(val onSatisfied: () -> Unit, val onError: (ServerError) -> Unit) {
-        class Summary(onSatisfied: () -> Unit, onError: (ServerError) -> Unit): Desire(onSatisfied, onError)
+        class Summary(onSatisfied: () -> Unit, onError: (ServerError) -> Unit) : Desire(onSatisfied, onError)
 
-        class SingleGradebook(val numberTerm: String, onSatisfied: () -> Unit, onError: (ServerError) -> Unit): Desire(onSatisfied, onError)
+        class SingleGradebook(val numberTerm: String, onSatisfied: () -> Unit, onError: (ServerError) -> Unit) : Desire(onSatisfied, onError)
 
-        class AllGradebooks(onSatisfied: () -> Unit, onError: (ServerError) -> Unit): Desire(onSatisfied, onError)
+        class AllGradebooks(onSatisfied: () -> Unit, onError: (ServerError) -> Unit) : Desire(onSatisfied, onError)
     }
 
     class Connection(val context: Context) : ServiceConnection {
 
         var sessionData: SessionData = SessionData()
-        get() = field
-        private set(value) {field = value}
+            get() = field
+            private set(value) {
+                field = value
+            }
 
         fun bindService(sessionData: SessionData, onConnected: (Binder) -> Unit) { // shortcut for binding service
             if (bound) unbindService()
@@ -240,7 +234,7 @@ class ServerService : Service() {
         val sslContext = SSLContext.getInstance("TLS")
         sslContext.init(null, arrayOf(trustManager), null)
 
-        val cache =  DiskBasedCache(cacheDir, 1024 * 1024)
+        val cache = DiskBasedCache(cacheDir, 1024 * 1024)
         val network = BasicNetwork(HurlStack(null, sslContext.socketFactory))
 
         requestQueue = RequestQueue(cache, network)
@@ -400,7 +394,7 @@ class ServerService : Service() {
                     val desire = entry.value
 
                     when (desire) {
-                        is Desire.Summary ->{
+                        is Desire.Summary -> {
                             desire.onSatisfied()
                             desiresIt.remove()
                         }
@@ -517,7 +511,7 @@ fun Context.loadCertificateExceptions(): List<Certificate> {
         val reader = PEMReader(InputStreamReader(input))
 
 
-       exceptions.add(reader.readObject() as Certificate)
+        exceptions.add(reader.readObject() as Certificate)
     }
 
     return exceptions

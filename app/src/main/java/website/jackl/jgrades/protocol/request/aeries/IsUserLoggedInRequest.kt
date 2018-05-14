@@ -5,15 +5,12 @@ import com.android.volley.Request
 import com.android.volley.VolleyError
 import org.json.JSONObject
 import website.jackl.jgrades.protocol.ServerError
-import website.jackl.jgrades.protocol.addUrlPath
 import website.jackl.jgrades.protocol.request.aeries.volley.AeriesJsonRequest
-import website.jackl.jgrades.protocol.service.ServerService
 
 /**
  * Created by jack on 12/26/17.
  */
-class IsUserLoggedInRequest(val onResult: (Boolean) -> Unit, onError: (ServerError) -> Unit) : AeriesRequest(onError)
-{
+class IsUserLoggedInRequest(val onResult: (Boolean) -> Unit, onError: (ServerError) -> Unit) : AeriesRequest(onError) {
 
     override fun constructRequest(service: ServiceInterface): Request<out Any> {
         return AeriesJsonRequest(Request.Method.GET, service.constructUrl(), null, this::onVolleyResult, this::onVolleyError)

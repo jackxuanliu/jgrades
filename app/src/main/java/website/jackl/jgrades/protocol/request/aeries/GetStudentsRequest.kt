@@ -22,21 +22,21 @@ GetStudentsRequest(val onResult: (List<Student.Info>, Student.Info) -> Unit, onE
         val students = mutableListOf<Student.Info>()
 
         var currentStudent: Student.Info? = null
-            for (student in studentsArray.jsonObjectIterator()) {
-                val info  = Student.Info(
-                        student.getString("schoolCode"),
-                        student.getString("studentNumber"),
-                        student.getString("nameOfStudent"),
-                        student.getString("nameOfSchool")
-                )
-                students.add(info)
+        for (student in studentsArray.jsonObjectIterator()) {
+            val info = Student.Info(
+                    student.getString("schoolCode"),
+                    student.getString("studentNumber"),
+                    student.getString("nameOfStudent"),
+                    student.getString("nameOfSchool")
+            )
+            students.add(info)
 
-                if (student.getBoolean("isCurrentStudent")) {
-                    if (currentStudent != null) throw RuntimeException()
-                    currentStudent = info
-                }
-
+            if (student.getBoolean("isCurrentStudent")) {
+                if (currentStudent != null) throw RuntimeException()
+                currentStudent = info
             }
+
+        }
 
         onResult(students, currentStudent!!)
     }

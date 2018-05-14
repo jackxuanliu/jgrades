@@ -1,24 +1,25 @@
 package website.jackl.jgrades.fragment
 
-import android.support.v4.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.app.Fragment
 import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import org.json.JSONObject
 import website.jackl.generated.data.constructGradebookAssignment
 import website.jackl.generated.data.write
-
-import website.jackl.jgrades.R
-import website.jackl.jgrades.activity.GradesActivity
 import website.jackl.jgrades.Data.Gradebook
 import website.jackl.jgrades.Data.SettingsManager
 import website.jackl.jgrades.Data.Student
+import website.jackl.jgrades.R
 import website.jackl.jgrades.activity.AssignmentEditActivity
+import website.jackl.jgrades.activity.GradesActivity
 import website.jackl.jgrades.protocol.service.ServerService
 import website.jackl.jgrades.recyclerAdapter.AssignmentsAdapter
 import website.jackl.jgrades.view.MyList
@@ -74,7 +75,7 @@ class AssignmentsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val parent = inflater.inflate(R.layout.fragment_assignments, container, false)
-        list =  parent.findViewById(R.id.assignments_list)
+        list = parent.findViewById(R.id.assignments_list)
 
         adapter = AssignmentsAdapter()
         adapter.apply {
@@ -237,7 +238,7 @@ class AssignmentsFragment : Fragment() {
         if (!inEdit) {
             list.onSrlPull = {
                 list.stopLoading()
-                Handler().postDelayed({exitEdit()}, 300)
+                Handler().postDelayed({ exitEdit() }, 300)
 
             }
             inEdit = true

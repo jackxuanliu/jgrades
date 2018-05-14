@@ -15,12 +15,12 @@ class GradesApplication : Application() {
     }
 
     var shadows: Typeface
-    get() {
-        return shadowsField!!
-    }
-    set(value) {
-        shadowsField = value
-    }
+        get() {
+            return shadowsField!!
+        }
+        set(value) {
+            shadowsField = value
+        }
 
     private var shadowsField: Typeface? = null
 

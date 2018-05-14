@@ -4,14 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.SearchView
-import android.view.View
-import android.widget.TextView
 import android.support.v7.widget.Toolbar
 import android.util.Log
-import website.jackl.jgrades.R
+import android.view.View
+import android.widget.TextView
 import website.jackl.jgrades.Data.District
-import website.jackl.jgrades.recyclerAdapter.DistrictsAdapter
+import website.jackl.jgrades.R
 import website.jackl.jgrades.newStore
+import website.jackl.jgrades.recyclerAdapter.DistrictsAdapter
 import website.jackl.jgrades.view.MyList
 
 class DistrictSelectionActivity : GradesActivity<ConstraintLayout>() {
@@ -38,7 +38,7 @@ class DistrictSelectionActivity : GradesActivity<ConstraintLayout>() {
         }
 
         searchView.setOnSearchClickListener { onStartSearch() }
-        searchView.setOnCloseListener { onEndSearch(); false}
+        searchView.setOnCloseListener { onEndSearch(); false }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -85,7 +85,7 @@ class DistrictSelectionActivity : GradesActivity<ConstraintLayout>() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         savedInstanceState?.apply { title.visibility = getInt("titleVisibility") }
-     }
+    }
 
     private fun onStartSearch() {
         title.visibility = View.GONE

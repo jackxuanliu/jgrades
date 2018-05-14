@@ -1,14 +1,11 @@
 package website.jackl.jgrades.recyclerAdapter
 
 import android.support.constraint.ConstraintLayout
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.SeekBar
 import android.widget.TextView
-import website.jackl.jgrades.R
 import website.jackl.jgrades.Data.Gradebook
+import website.jackl.jgrades.R
 import kotlin.math.roundToInt
 
 /**
@@ -71,7 +68,7 @@ class AssignmentsAdapter : MyListAdapter<Gradebook.Assignment>() { // TODO
                     slider.visibility = View.GONE
                 }
             }
-            
+
         }
     }
 
@@ -89,7 +86,7 @@ class AssignmentsAdapter : MyListAdapter<Gradebook.Assignment>() { // TODO
         holder.category.isEnabled = false
     }
 
-    class ViewHolder(itemView: View) : MyListAdapter.ViewHolder<Gradebook.Assignment>(itemView){
+    class ViewHolder(itemView: View) : MyListAdapter.ViewHolder<Gradebook.Assignment>(itemView) {
         val name: TextView = itemView.findViewById(R.id.assignment_name)
         val percent: TextView = itemView.findViewById(R.id.assignment_percent)
         val category: TextView = itemView.findViewById(R.id.assignment_category)
@@ -115,12 +112,12 @@ class AssignmentsAdapter : MyListAdapter<Gradebook.Assignment>() { // TODO
     }
 
     val Gradebook.Assignment.readableFraction: String
-        get(){
+        get() {
             val formattedPoints = Gradebook.decimalFormat.format(points)
             val formattedMaxPoints = Gradebook.decimalFormat.format(maxPoints)
 
             if (points == 0.00 && !isGraded) {
-                return "\u200E" +"N/A" + " / " + formattedMaxPoints
+                return "\u200E" + "N/A" + " / " + formattedMaxPoints
             } else {
                 return "\u200E" + formattedPoints + " / " + formattedMaxPoints
             }

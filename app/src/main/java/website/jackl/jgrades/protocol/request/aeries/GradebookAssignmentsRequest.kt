@@ -30,7 +30,6 @@ class GradebookAssignmentsRequest(val numberTerm: String, val onResult: (List<Gr
         requestJson.put("pageSize", 0)
 
 
-
         val first = AeriesJsonRequest(Request.Method.POST, service.constructUrl(), requestJson, this::onFirstVolleyResult, this::onVolleyError)
         service.addRequest(first)
     }

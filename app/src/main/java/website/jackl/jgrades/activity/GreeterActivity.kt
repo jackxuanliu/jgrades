@@ -11,12 +11,12 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.analytics.FirebaseAnalytics
-import website.jackl.jgrades.R
 import website.jackl.jgrades.Data.User
+import website.jackl.jgrades.R
+import website.jackl.jgrades.newStore
 import website.jackl.jgrades.protocol.ServerError
 import website.jackl.jgrades.protocol.request.aeries.IsUserLoggedInRequest
 import website.jackl.jgrades.protocol.request.aeries.LoginRequest
-import website.jackl.jgrades.newStore
 
 class GreeterActivity : GradesActivity<ConstraintLayout>() {
 
@@ -59,8 +59,7 @@ class GreeterActivity : GradesActivity<ConstraintLayout>() {
         super.onStop()
     }
 
-    fun fadeIn()
-    {
+    fun fadeIn() {
         TransitionManager.beginDelayedTransition(parent, Fade())
         parent!!.visibility = View.VISIBLE
     }
@@ -90,8 +89,7 @@ class GreeterActivity : GradesActivity<ConstraintLayout>() {
     private fun onLoginCheck(loggedIn: Boolean) {
         if (loggedIn) {
             launchMainActivity()
-        }
-        else {
+        } else {
             val global = newStore.loadGlobal()
 
             val activeEmail = global.activeEmail
@@ -117,8 +115,7 @@ class GreeterActivity : GradesActivity<ConstraintLayout>() {
     private fun onLogin(success: Boolean) {
         if (success) {
             launchMainActivity()
-        }
-        else {
+        } else {
             launchLogin()
         }
     }
@@ -156,7 +153,6 @@ class GreeterActivity : GradesActivity<ConstraintLayout>() {
 
     var statusHolder: FrameLayout? = null
     var greeterText: TextView? = null
-
 
 
 }

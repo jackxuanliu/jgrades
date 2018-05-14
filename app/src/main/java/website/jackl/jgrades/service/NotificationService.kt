@@ -1,12 +1,7 @@
 package website.jackl.jgrades.service
 
-import android.app.Service
 import android.app.job.JobParameters
 import android.app.job.JobService
-import android.content.Context
-import android.content.Intent
-import android.os.IBinder
-import android.os.PowerManager
 import android.support.annotation.RequiresApi
 import android.util.Log
 import website.jackl.jgrades.Data.SessionData
@@ -16,7 +11,8 @@ import website.jackl.jgrades.Data.User
 import website.jackl.jgrades.newStore
 import website.jackl.jgrades.protocol.service.ServerService
 
-@RequiresApi(21) class NotificationService : JobService() {
+@RequiresApi(21)
+class NotificationService : JobService() {
 
     override fun onStartJob(params: JobParameters?): Boolean {
         Log.d("Notification Job", "Start")
@@ -38,7 +34,7 @@ import website.jackl.jgrades.protocol.service.ServerService
         if (aeriesUrl != null && email != null && password != null && user?.preferredStudent != null) {
             student = user.preferredStudent
             val sessionData = SessionData(aeriesUrl = aeriesUrl, user = user)
-            connection  = ServerService.Connection(this)
+            connection = ServerService.Connection(this)
             connection.bindService(
                     sessionData,
                     {
@@ -47,11 +43,13 @@ import website.jackl.jgrades.protocol.service.ServerService
                                 {
                                     Log.d("Notification Job", "End")
                                     connection.unbindService()
-                                    jobFinished(params, false)},
+                                    jobFinished(params, false)
+                                },
                                 {
                                     Log.d("Notification Job", "Error")
                                     connection.unbindService()
-                                    jobFinished(params, true)}
+                                    jobFinished(params, true)
+                                }
                         ), false)
                     }
             )

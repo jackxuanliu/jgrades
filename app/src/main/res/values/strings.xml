@@ -28,10 +28,14 @@
     <string name="assignmentEdit_points">points</string>
     <string name="assignmentEdit_maxPoints">total</string>
     <string name="prefCategory_notifications">Notifications</string>
+    <string name="prefCategory_data">Data</string>
     <string name="pref_enableNotifications">Enable notifications (experimental)</string>
     <string name="prefSummary_enableNotifications">Send a notification when a class is updated</string>
     <string name="prefKey_enableNotifications" translatable="false">enableNotifications</string>
     <string name="pref_updateInterval">Check for updates every…</string>
+    <string name="prefTitle_deleteLocalCachedData">Delete local cached data…</string>
+    <string name="prefSummary_deleteLocalCachedData">Only deletes data in app (does not affect data on Aeries)</string>
+
     <string name="prefSummary_updateInterval" translatable="false">Minutes between each check for new updates</string>
 
     <!-- TODO: Remove or change this placeholder text -->

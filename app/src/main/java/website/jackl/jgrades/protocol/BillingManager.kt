@@ -9,7 +9,7 @@ import website.jackl.jgrades.fragment.defaultPrefs
 /**
  * Created by jack on 2/24/18.
  */
-class BillingManager(val binder: Binder): PurchasesUpdatedListener, BillingClientStateListener {
+class BillingManager(val binder: Binder) : PurchasesUpdatedListener, BillingClientStateListener {
     interface Binder {
         val context: Context
         fun checkPurchases()
@@ -29,7 +29,7 @@ class BillingManager(val binder: Binder): PurchasesUpdatedListener, BillingClien
             started = true
             billingClient = BillingClient.newBuilder(binder.context).setListener(this).build()
 
-                billingClient.startConnection(this)
+            billingClient.startConnection(this)
 
         } else {
             onStop()
@@ -40,7 +40,7 @@ class BillingManager(val binder: Binder): PurchasesUpdatedListener, BillingClien
     fun onStop() {
         if (started) {
             started = false
-                billingClient.endConnection()
+            billingClient.endConnection()
 
         }
     }
@@ -65,9 +65,9 @@ class BillingManager(val binder: Binder): PurchasesUpdatedListener, BillingClien
     override fun onBillingServiceDisconnected() {
         fun connect(delayMillis: Long) {
             if (started)
-            handler.postDelayed({
-                if (started) billingClient.startConnection(this)
-            }, delayMillis)
+                handler.postDelayed({
+                    if (started) billingClient.startConnection(this)
+                }, delayMillis)
         }
         when (tries) {
             0 -> {

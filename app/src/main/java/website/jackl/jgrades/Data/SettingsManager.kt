@@ -87,6 +87,10 @@ class SettingsManager(val context: Context, val prefsName: String = "default") {
         }
     }
 
+    fun deleteGradebookData() {
+        prefsEdit.remove("gradebookMap").commit()
+    }
+
     fun saveStudent(student: Student) {
         val studentMap = prefs!!.getJSONObject("studentMap") ?: JSONObject()
         studentMap.put(student.info.unique, student.write())
@@ -131,13 +135,13 @@ class SettingsManager(val context: Context, val prefsName: String = "default") {
                 try {
                     gradebook = constructGradebook(studentGradebooks.getJSONObject(key))
                 } catch (e: Throwable) {
-                   e.printStackTrace()
+                    e.printStackTrace()
                 }
                 val summary = gradebook?.summary
                 val showNotCurrent = context.defaultPrefs.getBoolean("pref_showPrior", false)
                 if (summary != null) {
                     val isNotCurrent = summary.code != ""
-                    if  (isNotCurrent) {
+                    if (isNotCurrent) {
                         if (showNotCurrent) {
                             summaries.add(summary)
                         } else {
@@ -157,7 +161,8 @@ class SettingsManager(val context: Context, val prefsName: String = "default") {
 
 
     data class SummariesResult(val result: List<Gradebook.Summary>, val student: Student.Info?)
-    fun loadAnyGradebookSummaries(): SummariesResult{ // get first saved student and load summaries
+
+    fun loadAnyGradebookSummaries(): SummariesResult { // get first saved student and load summaries
         val summaries: MutableList<Gradebook.Summary> = mutableListOf()
         try {
 

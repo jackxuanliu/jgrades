@@ -1,11 +1,8 @@
 package website.jackl.jgrades.protocol
 
-import android.util.Log
 import java.security.KeyStore
-import java.security.PublicKey
 import java.security.cert.Certificate
 import java.security.cert.X509Certificate
-import javax.net.ssl.TrustManager
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 

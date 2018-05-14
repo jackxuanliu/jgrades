@@ -1,6 +1,5 @@
 package website.jackl.jgrades.activity
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.NotificationManagerCompat
@@ -8,7 +7,6 @@ import android.support.v7.widget.Toolbar
 import website.jackl.jgrades.Data.Student
 import website.jackl.jgrades.R
 import website.jackl.jgrades.protocol.request.aeries.GetStudentsRequest
-import website.jackl.jgrades.recyclerAdapter.MyListAdapter
 import website.jackl.jgrades.recyclerAdapter.StudentsAdapter
 import website.jackl.jgrades.view.MyList
 

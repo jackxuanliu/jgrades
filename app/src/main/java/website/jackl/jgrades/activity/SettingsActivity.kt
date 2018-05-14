@@ -2,21 +2,17 @@ package website.jackl.jgrades.activity
 
 import android.annotation.TargetApi
 import android.app.NotificationChannel
-import android.os.Bundle
-import android.support.v7.preference.Preference
-import android.widget.ScrollView
-import website.jackl.jgrades.R
-import website.jackl.jgrades.fragment.SettingsFragment
 import android.app.NotificationManager
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
 import android.os.Build
-import android.support.design.widget.Snackbar
+import android.os.Bundle
 import android.support.v7.preference.PreferenceManager
-import com.android.billingclient.api.BillingClient
-import com.android.billingclient.api.BillingFlowParams
+import android.widget.ScrollView
+import website.jackl.jgrades.R
+import website.jackl.jgrades.fragment.SettingsFragment
 import website.jackl.jgrades.fragment.getLongFromString
 import website.jackl.jgrades.protocol.BillingManager
 import website.jackl.jgrades.service.NotificationService
@@ -62,7 +58,8 @@ class SettingsActivity : GradesActivity<ScrollView>(), SettingsFragment.Binder, 
         enableNotificationJob(minutes)
     }
 
-    @TargetApi(26) private fun setupNotificationChannel() {
+    @TargetApi(26)
+    private fun setupNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create the NotificationChannel, but only on API 26+ because
             // the NotificationChannel class is new and not in the support library
@@ -78,7 +75,8 @@ class SettingsActivity : GradesActivity<ScrollView>(), SettingsFragment.Binder, 
 
     }
 
-    @TargetApi(21) private fun enableNotificationJob(intervalMinutes: Long) {
+    @TargetApi(21)
+    private fun enableNotificationJob(intervalMinutes: Long) {
         val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         val builder = JobInfo.Builder(CLASS_UPDATES_JOB_ID, ComponentName(this, NotificationService::class.java))
 
@@ -89,7 +87,8 @@ class SettingsActivity : GradesActivity<ScrollView>(), SettingsFragment.Binder, 
         jobScheduler.schedule(builder.build())
     }
 
-    @TargetApi(21)private fun disableNotificationJob() {
+    @TargetApi(21)
+    private fun disableNotificationJob() {
         val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobScheduler.cancel(CLASS_UPDATES_JOB_ID)
     }

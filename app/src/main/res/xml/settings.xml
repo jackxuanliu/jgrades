@@ -57,6 +57,14 @@
             android:title="@string/prefTitle_gpFeedback" />
 
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefCategory_data">
+        <Preference
+            android:key="pref_deleteLocalCachedData"
+            android:summary="@string/prefSummary_deleteLocalCachedData"
+            android:title="@string/prefTitle_deleteLocalCachedData" />
+
+    </PreferenceCategory>
+
 
     <!--<PreferenceCategory android:title="@string/prefCategory_importExport">-->
         <!--<Preference-->
